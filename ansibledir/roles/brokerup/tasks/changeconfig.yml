@@ -1,0 +1,9 @@
+---
+- name: adding the zookeeper ips
+  set_fact: nodelist={%for host in groups['kafka-zookeepers']%}{{host}}:2181{% if not loop.last %},{% endif %}{% endfor %}
+
+- name: using vars
+  lineinfile:
+   path: /home/ubuntu/kafka_2.12-2.3.0/config/server.properties
+   regexp: '^zookeeper.connect='
+   line: zookeeper.connect={{ nodelist }}

@@ -1,0 +1,11 @@
+[all]
+
+[kafka-zookeepers]
+172.31.29.3 ansible_user=ubuntu ansible_ssh_pass=ubuntu
+172.31.19.74 ansible_user=ubuntu ansible_ssh_pass=ubuntu
+172.31.16.5 ansible_user=ubuntu ansible_ssh_pass=ubuntu
+
+[kafka-brokers]
+172.31.29.3 ansible_user=ubuntu ansible_ssh_pass=ubuntu
+172.31.19.74 ansible_user=ubuntu ansible_ssh_pass=ubuntu
+172.31.16.5 ansible_user=ubuntu ansible_ssh_pass=ubuntu

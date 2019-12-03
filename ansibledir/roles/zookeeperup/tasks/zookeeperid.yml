@@ -1,0 +1,6 @@
+---
+- name: Setting up id for each zookeepernode
+  lineinfile:
+   path: /tmp/zookeeper/myid
+   line: "{{groups['kafka-zookeepers'].index(inventory_hostname)}}"
+   create: yes

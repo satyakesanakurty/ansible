@@ -1,0 +1,18 @@
+---
+- name: Create List of nodes to be added into Cluster
+  set_fact: nodelist={%for host in groups['kafka-zookeepers']%}server.{{loop.index-1}}={{host}}:2888:3888\n{% endfor %}
+
+- name: Using vars
+  lineinfile:
+   path: /home/ubuntu/kafka_2.12-2.3.0/config/zookeeper.properties
+   line: "{{ nodelist }}"
+
+- name: setting init limit
+  lineinfile:
+   path: /home/ubuntu/kafka_2.12-2.3.0/config/zookeeper.properties
+   line: initLimit=5
+
+- name: setting sync limit
+  lineinfile:
+   path: /home/ubuntu/kafka_2.12-2.3.0/config/zookeeper.properties
+   line: syncLimit=2

@@ -1,0 +1,10 @@
+- hosts: kafka-servers
+  become: yes
+  become_method: sudo
+  remote_user: ubuntu
+  gather_facts: true
+  tasks:
+   
+    -name: update packages
+     apt: 
+    

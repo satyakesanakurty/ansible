@@ -1,0 +1,5 @@
+---
+- import_tasks: javaheap.yml
+- import_tasks: brokerid.yml
+- import_tasks: changeconfig.yml
+- import_tasks: brokerstart.yml

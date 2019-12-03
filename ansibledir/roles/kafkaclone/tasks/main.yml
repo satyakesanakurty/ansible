@@ -1,0 +1,3 @@
+---
+- import_tasks: jdkinstall.yml
+- import_tasks: kafkainstall.yml

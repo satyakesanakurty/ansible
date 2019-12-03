@@ -1,0 +1,8 @@
+---
+- hosts: group1
+  tasks:
+  - name: Using vars
+    lineinfile:
+     path: /home/ubuntu/sample1
+     line: "{{groups['group1'].index(inventory_hostname)}}"
+     create: yes

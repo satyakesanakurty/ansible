@@ -1,0 +1,9 @@
+---
+- hosts: kafka-brokers
+  user: root
+  tasks:
+  - name: Using v
+    replace:
+     path: /home/ubuntu/file
+     regexp: '/b'
+     replace: ' '

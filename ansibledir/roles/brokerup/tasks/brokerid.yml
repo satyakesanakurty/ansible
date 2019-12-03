@@ -1,0 +1,7 @@
+---
+- name: Setting up id for each broker
+  lineinfile:
+   path: /home/ubuntu/kafka_2.12-2.3.0/config/server.properties
+   regexp: '^broker.id'
+   line: broker.id={{groups['kafka-brokers'].index(inventory_hostname)}}
+

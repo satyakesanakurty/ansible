@@ -1,0 +1,13 @@
+---
+- hosts: kafka-brokers
+  tasks:
+  - name: creating broker id
+    set_fact: nodelist={%for host in groups['kafka-zookeepers']%}{{host}}:2181{% if not loop.last %},{% endif %}{% endfor %}
+  
+  - name: using vars
+    lineinfile:
+     path: /home/ubuntu/sample1.txt
+     regexp: '^zookeeper.listen='
+     #insertafter: '^#listen= '
+     line: zookeeper.listen={{ nodelist }}
+    # create: yes

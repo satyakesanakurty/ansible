@@ -1,0 +1,35 @@
+- hosts: kafka-servers
+  become: yes
+  become_method: sudo
+  remote_user: ubuntu
+  tasks:
+     - name: updating apt
+       apt:
+         upgrade: dist
+         update_cache: yes
+      
+     - name: installing default jdk
+       apt:
+         name: default-jdk
+         state: latest
+
+     - name: clone kafka repo
+       shell: wget http://apachemirror.wuchna.com/kafka/2.3.0/kafka_2.12-2.3.0.tgz
+
+     - name: extracting files
+       unarchive:
+         src: /home/ubuntu/kafka_2.12-2.3.0.tgz
+         dest: /home/ubuntu
+         remote_src: yes
+
+     - name: file edit
+       lineinfile:
+         path: /home/ubuntu/kafka_2.12-2.3.0/bin/kafka-server-start.sh
+         regexp: '-Xmx1G -Xms1G'
+         line:     export KAFKA_HEAP_OPTS="-Xmx512m -Xms512m"
+
+     - name: running zookeeper.sh
+       shell: /home/ubuntu/kafka_2.12-2.3.0/bin/zookeeper-server-start.sh -daemon /home/ubuntu/kafka_2.12-2.3.0/config/zookeeper.properties
+
+     - name: running broker.sh
+       shell: /home/ubuntu/kafka_2.12-2.3.0/bin/kafka-server-start.sh -daemon /home/ubuntu/kafka_2.12-2.3.0/config/server.properties

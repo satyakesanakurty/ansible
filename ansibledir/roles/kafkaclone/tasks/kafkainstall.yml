@@ -1,0 +1,9 @@
+---
+- name: clone kafka repo
+  shell: wget http://apachemirror.wuchna.com/kafka/2.3.0/kafka_2.12-2.3.0.tgz
+
+- name: extracting files
+  unarchive:
+   src: /home/ubuntu/kafka_2.12-2.3.0.tgz
+   dest: /home/ubuntu
+   remote_src: yes

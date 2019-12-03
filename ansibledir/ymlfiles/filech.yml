@@ -1,0 +1,13 @@
+- hosts: kafka-brokers
+#  become: yes
+#  become_method: sudo
+#  remote_user: ubuntu
+  tasks:
+  - name: vars
+    command: line= "$(awk '/zookeeper/{ print NR; exit }' /home/ubuntu/file)"
+  - name: file edit
+    command: sed -i "${line}s/,$//" /home/ubuntu/file
+#       lineinfile:
+#         path: /home/ubuntu/kafka_2.12-2.3.0/bin/kafka-server-start.sh
+#         regexp: '-Xmx1G -Xms1G'
+#         line:     export KAFKA_HEAP_OPTS="-Xmx512m -Xms512m"

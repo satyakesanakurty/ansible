@@ -1,0 +1,10 @@
+---
+- hosts: group1
+  tasks:
+  - name: id
+    set_fact: nodelist={%for host in groups['group1']%}server.{{loop.index-1 }}={{host}}:2888:3888\n{% endfor %}
+  - name: Setting up id for each zookeepernode
+    lineinfile:
+     path: /home/ubuntu/sample2
+     line: "{{ nodelist }}"
+     create: yes

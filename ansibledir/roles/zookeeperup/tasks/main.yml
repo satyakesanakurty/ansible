@@ -1,0 +1,5 @@
+---
+# tasks file for /home/ubuntu/ansibledir/roles/apache
+- import_tasks: zookeeperid.yml
+- import_tasks: configchange.yml
+- import_tasks: zookeeperstart.yml

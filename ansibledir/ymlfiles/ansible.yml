@@ -1,0 +1,9 @@
+---
+- hosts: kafka-zookeepers
+  user: root
+  tasks:
+  - name: Ensure SELinux is set to enforcing mode
+    lineinfile:
+     path: /home/ubuntu/testing/test1
+     line: "{{groups['kafka-zookeepers'].index(inventory_hostname)}}"
+     create: yes

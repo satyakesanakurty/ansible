@@ -1,0 +1,16 @@
+---
+- hosts: all
+  become: yes
+  become_method: sudo
+  roles:
+  - kafkaclone
+- hosts: kafka-zookeepers
+  become: yes
+  become_method: sudo
+  roles:
+  - zookeeperup
+- hosts: kafka-brokers
+  become: yes
+  become_method: sudo
+  roles:
+  - brokerup

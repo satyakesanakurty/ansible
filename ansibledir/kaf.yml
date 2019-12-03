@@ -1,0 +1,9 @@
+---
+- hosts: all
+ # become: yes
+#  become_method: sudo
+  tasks:
+  - name: remove all
+    command: sudo rm -rf /home/ubuntu/kafka_2.12-2.3.0
+    command: sudo rm -f /home/ubuntu/kafka_2.12-2.3.0.tgz
+    command: sudo rm -rf /tmp/zookeeper
